@@ -1,0 +1,21 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  skills:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate SKILL.md frontmatter
+        run: bash scripts/validate.sh
+
+      - name: Check scripts parse
+        run: |
+          bash -n install.sh
+          bash -n capture.sh
+          bash -n scripts/validate.sh
