@@ -9,7 +9,7 @@
 | `article-claim-factcheck` | 核实中文长文里的可核查主张，按一手来源分级取证，输出 ✅⚠️❌ 表 | DSH 联网检索工具 |
 | `video-claim-factcheck` | 核实 B 站 / YouTube 视频口播，连带交付清理后的文字稿 | `yt-dlp`、`ffmpeg`、whisper 环境 |
 | `wechat-article-read` | 抓公众号文章，转成干净 Markdown | `python3`（只用标准库） |
-| `kb-archive` | 按固定六字段 frontmatter 归档文档进知识库 | 本机知识库路径，见下文 |
+| `kb-archive` | 按固定六字段 frontmatter 归档文档进知识库 | 环境变量 `KB_ROOT`，默认 `~/Documents/知识库` |
 | `research-pipeline` | 主代理跑 `learn`、子代理跑 `research` 的多源研究流水线 | `learn`、`research` 两个技能 |
 | `ste100-style` | 用 ASD-STE100 的写作纪律约束中文技术输出 | `node`；可选 STE100 原文 PDF |
 
@@ -63,9 +63,11 @@ dsh-skills/
 
 要逐字核对条文时，从 [ASD 下载页](https://www.asd-ste100.org/STE_downloads.html) 免费申请 Issue 9，再把 PDF 放进 `skills/ste100-style/assets/`。说明见该目录的 README。没有 PDF 也能用 `references/` 下的摘要。
 
-## 本机路径
+## 知识库路径
 
-`kb-archive/SKILL.md` 写了作者本机的知识库路径 `/Users/menmapro/Documents/知识库`，共 4 处。换机器或给别人用时，把这 4 处改成自己的路径。`scripts/validate.sh` 会把这处提示出来。
+`kb-archive` 不写死路径。归档根目录取环境变量 `KB_ROOT`，没设置时用 `~/Documents/知识库`。要换目录就 `export KB_ROOT=/你的/知识库`，技能正文不用改。
+
+`scripts/validate.sh` 会把技能里写死的 `/Users/...`、`/home/...` 绝对路径打成提示。它不判失败，只提醒你换机器前要改。
 
 ## 本仓库不收的技能
 

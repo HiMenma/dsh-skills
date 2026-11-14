@@ -1,6 +1,6 @@
 ---
 name: kb-archive
-description: "把文档按统一格式归档进个人知识库 /Users/menmapro/Documents/知识库：固定六字段 frontmatter、中文文件名规则、正文原样保留、索引追加与写入后校验。当用户说“存到知识库”“归档”“保存到我的知识库”“加 frontmatter”“补索引”，或要求按知识库规范整理一份文档时使用。"
+description: "把文档按统一格式归档进个人知识库（默认 `~/Documents/知识库`，可用环境变量 `KB_ROOT` 改）：固定六字段 frontmatter、中文文件名规则、正文原样保留、索引追加与写入后校验。当用户说“存到知识库”“归档”“保存到我的知识库”“加 frontmatter”“补索引”，或要求按知识库规范整理一份文档时使用。"
 ---
 
 # 知识库归档（kb-archive）
@@ -19,7 +19,9 @@ description: "把文档按统一格式归档进个人知识库 /Users/menmapro/D
 
 ## 路径与命名
 
-根目录：`/Users/menmapro/Documents/知识库`
+根目录：`${KB_ROOT:-$HOME/Documents/知识库}`
+
+`KB_ROOT` 是环境变量，不写在仓库里。它没设置时，根目录是 `~/Documents/知识库`。要换目录，先 `export KB_ROOT=/你的/知识库`，下文命令不用改。下文所有路径都按 `${KB_ROOT:-$HOME/Documents/知识库}` 展开。
 
 结构默认平铺。用户明确要求分组时才建子目录。
 
@@ -66,7 +68,7 @@ frontmatter 之后空一行，再写正文。正文一级标题用 `#`，且与 
 
 ## 执行步骤
 
-1. 确认目录存在。不存在就 `mkdir -p "/Users/menmapro/Documents/知识库"`。
+1. 确认目录存在。不存在就 `mkdir -p "${KB_ROOT:-$HOME/Documents/知识库}"`。
 2. 读目标文件（如果已存在）。检查是否已有 frontmatter。有就改字段，不要叠加第二个 `---` 块。
 3. 用 `bash` 写文件，不要用 `write` 工具。`write` 受工作区沙箱限制，写不到这个目录。
 4. 写完后校验四件事：文件存在、字节数合理、前 10 行是 frontmatter 加一级标题、正文与原文一致（原文缺一级标题时，只允许补标题）。
@@ -76,7 +78,7 @@ frontmatter 之后空一行，再写正文。正文一级标题用 `#`，且与 
 
 ## 索引维护
 
-索引文件：`/Users/menmapro/Documents/知识库/_index.md`
+索引文件：`${KB_ROOT:-$HOME/Documents/知识库}/_index.md`
 
 表头固定：
 
