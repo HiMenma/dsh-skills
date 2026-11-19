@@ -6,6 +6,7 @@
 
 | 技能 | 做什么 | 需要什么 | 来源 |
 | --- | --- | --- | --- |
+| `ai-product-design-review` | 按 11 条可判定清单评审产品界面与文案，输出带位置与改法的修复项 | 无硬依赖；截图对比可选 `ego-browser` 与 PDF 合并工具 | 本仓库维护 |
 | `article-claim-factcheck` | 核实中文长文里的可核查主张，按一手来源分级取证，输出 ✅⚠️❌ 表 | DSH 联网检索工具 | 本仓库维护 |
 | `video-claim-factcheck` | 核实 B 站 / YouTube 视频口播，连带交付清理后的文字稿 | `yt-dlp`、`ffmpeg`、whisper 环境 | 本仓库维护 |
 | `wechat-article-read` | 抓公众号文章，转成干净 Markdown | `python3`（只用标准库） | 本仓库维护 |
