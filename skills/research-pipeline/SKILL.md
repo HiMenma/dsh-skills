@@ -11,6 +11,15 @@ description: "编排多源研究：主代理跑 learn，子代理跑 research；
 
 本 skill 不复制两个底层 skill 的步骤。主流程执行时加载 `learn`；派子代理时让子代理加载 `research`。
 
+## 依赖来源
+
+这两个底层 skill 由上游作者维护，本仓库原样收录在 `skills/learn/` 和 `skills/research/`：
+
+- `learn`：[tw93/Waza](https://github.com/tw93/Waza) 的 `skills/learn/SKILL.md`，MIT，版权归 Tw93。
+- `research`：[mattpocock/skills](https://github.com/mattpocock/skills) 的 `skills/engineering/research/`，MIT，版权归 Matt Pocock。
+
+具体 commit、sha256 与同步命令见各自目录的 `SOURCE.md`。升级换 vendor 文件，不要在这里复制它们的正文。
+
 ## 何时使用
 
 - 多源研究，需要一份带引用的成稿、报告、brief、白皮书或综述。
