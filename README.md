@@ -11,6 +11,7 @@
 | `video-claim-factcheck` | 核实 B 站 / YouTube 视频口播，连带交付清理后的文字稿 | `yt-dlp`、`ffmpeg`、whisper 环境 | 本仓库维护 |
 | `wechat-article-read` | 抓公众号文章，转成干净 Markdown | `python3`（只用标准库） | 本仓库维护 |
 | `kb-archive` | 按固定六字段 frontmatter 归档文档进知识库 | 环境变量 `KB_ROOT`，默认 `~/Documents/知识库` | 本仓库维护 |
+| `live-stream-source-finder` | 查指定频道的 HLS 直播源，分级实测后输出可导入的 m3u | `python3`、`ffmpeg`、`ffprobe`、`curl` | 本仓库维护 |
 | `learn` | 六阶段研究流程：收源 → 消化 → 大纲 → 成稿 → 精修 → 自审 | DSH 联网检索；可选 `read`、`write` | [tw93/Waza](https://github.com/tw93/Waza)，MIT，原样收录 |
 | `research` | 派后台子代理查一手来源，产出一份带引用的 Markdown 笔记 | `subagent` 工具 | [mattpocock/skills](https://github.com/mattpocock/skills)，MIT，原样收录 |
 | `research-pipeline` | 主代理跑 `learn`、子代理跑 `research` 的多源研究流水线 | 本仓库的 `learn`、`research` | 本仓库维护 |
