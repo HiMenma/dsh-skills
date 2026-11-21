@@ -83,8 +83,8 @@ if [ ! -d "$DST_ROOT" ]; then
   fi
 fi
 
-# 不入库的版权文件：比对时忽略，避免把本机独有的 PDF 当成差异。
-ignore_pattern='ASD-STE100_ISSUE9\.pdf|STE100_issue9_part1_writing_rules\.txt'
+# 不入库的文件：比对时忽略，避免把本机独有的版权 PDF、Python 缓存当成差异。
+ignore_pattern='ASD-STE100_ISSUE9\.pdf|STE100_issue9_part1_writing_rules\.txt|__pycache__|\.pyc$'
 
 status=0
 for name in "${names[@]}"; do

@@ -11,7 +11,8 @@
 #   DSH_SKILLS_DIR  源目录，默认 $HOME/.dsh/skills
 #
 # 复制语义：镜像源目录，仓库里已被线上删除的文件会被删掉。
-# 例外：ste100-style/assets 下的两个版权文件不收，也不删本机的副本。
+# 例外：ste100-style/assets 下的两个版权文件不收，也不删本机的副本；
+#       Python 的 __pycache__ 与 *.pyc 不收。
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -45,7 +46,7 @@ if [ "${#names[@]}" -eq 0 ]; then
   done
 fi
 
-ignore_pattern='ASD-STE100_ISSUE9\.pdf|STE100_issue9_part1_writing_rules\.txt'
+ignore_pattern='ASD-STE100_ISSUE9\.pdf|STE100_issue9_part1_writing_rules\.txt|__pycache__|\.pyc$'
 
 status=0
 for name in "${names[@]}"; do
@@ -82,11 +83,15 @@ for name in "${names[@]}"; do
       mkdir -p "$dst"
       if command -v rsync >/dev/null 2>&1; then
         rsync -a --delete \
+          --exclude '__pycache__' \
+          --exclude '*.pyc' \
           --exclude 'ASD-STE100_ISSUE9.pdf' \
           --exclude 'STE100_issue9_part1_writing_rules.txt' \
           "$src/" "$dst/"
       else
         cp -R "$src/." "$dst/"
+        find "$dst" -name '__pycache__' -type d -prune -exec rm -rf {} + 2>/dev/null || true
+        find "$dst" -name '*.pyc' -type f -delete 2>/dev/null || true
         rm -f "$dst/assets/ASD-STE100_ISSUE9.pdf" \
               "$dst/assets/STE100_issue9_part1_writing_rules.txt"
       fi
